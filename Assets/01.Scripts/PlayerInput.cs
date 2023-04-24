@@ -9,6 +9,8 @@ public class PlayerInput : MonoBehaviour
 {
     public UnityEvent<float> OnMoveEvent;
     public UnityEvent<float> OnDashEvent;
+    public UnityEvent OnJumpEvent;
+    public UnityEvent<float> OnWallClimingEvent;
 
     private float x;
 
@@ -16,6 +18,8 @@ public class PlayerInput : MonoBehaviour
     {
         Movement();
         Dash();
+        Jump();
+        WallCheck();
     }
 
     private void Movement()
@@ -27,5 +31,15 @@ public class PlayerInput : MonoBehaviour
     private void Dash()
     {
         OnDashEvent?.Invoke(x);
+    }
+
+    private void Jump()
+    {
+        OnJumpEvent?.Invoke();
+    }
+
+    private void WallCheck()
+    {
+        OnWallClimingEvent?.Invoke(x);
     }
 }

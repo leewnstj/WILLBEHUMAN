@@ -11,7 +11,6 @@ public class PlayerDefault : EntityProperty
     public bool isDash = false;
 
     public float _currentDashTime;
-    private float _dashDis;
 
     [Header("มกวม")]
     [SerializeField] private float _jumpPower;
@@ -26,16 +25,14 @@ public class PlayerDefault : EntityProperty
             _currentDashTime = _dashCoolTime;
             _rigid.velocity = Vector2.zero;
             _rigid.gravityScale = 0;
-            _dashDis = (int)inputX;
         }    
 
         if (isDash)
         {
-            _rigid.velocity = transform.right * _dashDis * _dashPower;
+            _rigid.velocity = transform.right * transform.localScale.x * _dashPower;
             _currentDashTime -= Time.deltaTime;
             if (_currentDashTime <= 0)
             {
-                Debug.Log("DF");
                 isDash = false;
                 _rigid.gravityScale = 5;
             }
@@ -46,7 +43,7 @@ public class PlayerDefault : EntityProperty
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, _jumpLayDis, _groundLayer);
 
-        if(hit)
+        if(hit && Input.GetKeyDown(KeyCode.Space))
         {
             _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpPower);
         }

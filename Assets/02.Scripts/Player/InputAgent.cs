@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,16 +8,25 @@ public class InputAgent : MonoBehaviour
 {
     public UnityEvent<float> PlayerDefault;
     public UnityEvent PlayerJump;
+    public UnityEvent<float> PlayerDash;
+
+    private float x;
 
     private void Update()
     {
-        PlayerDefaultResource();
+        PlayerOnMove();
         PlayerOnJump();
+        PlayerOnDash();
     }
 
-    private void PlayerDefaultResource()
+    private void PlayerOnDash()
     {
-        float x = Input.GetAxisRaw("Horizontal");
+        PlayerDash?.Invoke(x);
+    }
+
+    private void PlayerOnMove()
+    {
+        x = Input.GetAxisRaw("Horizontal");
         PlayerDefault?.Invoke(x);
     }
 

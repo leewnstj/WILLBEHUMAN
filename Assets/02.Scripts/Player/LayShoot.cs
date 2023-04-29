@@ -14,8 +14,6 @@ public abstract class LayShoot : MonoBehaviour, ICheckLayerName
 
     protected virtual void Awake()
     {
-        _rigid = GetComponent<Rigidbody2D>();
-
         switch (_direction)
         {
             case Direction.Left:

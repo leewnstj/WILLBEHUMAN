@@ -11,6 +11,12 @@ public class PlayerDash : EntityProperty
     public bool isDash = false;
 
     public float _currentDashTime;
+
+    protected override void Awake()
+    {
+        _rigid = transform.parent.GetComponent<Rigidbody2D>();
+        base.Awake();
+    }
     public void OnDash(float inputX)
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerJump : LayShoot
+public class PlayerJump : RayShoot
 {
     [SerializeField] private float _jumpForce;
 
@@ -13,7 +13,7 @@ public class PlayerJump : LayShoot
     }
     public void OnJump()
     {
-        if(isGround && Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && IsGround())
         {
             _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
         }

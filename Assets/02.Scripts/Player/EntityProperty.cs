@@ -8,6 +8,6 @@ public class EntityProperty : MonoBehaviour
 
     protected virtual void Awake()
     {
-        
+
     }
 }
